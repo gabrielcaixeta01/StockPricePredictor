@@ -12,11 +12,17 @@ def index():
         if df is None:
             return render_template("index.html", error="Invalid or unknown ticker.")
 
-        prediction, image_path = train_model(df, ticker)
+        today_price, next_price, image_path = train_model(df, ticker)
 
-        if prediction is None or image_path is None:
+        if None in (today_price, next_price, image_path):
             return render_template("index.html", error="Something went wrong while processing the prediction. Please try again.")
 
-        return render_template("result.html", ticker=ticker, prediction=prediction, image=image_path)
+        return render_template(
+            "result.html",
+            ticker=ticker,
+            today=today_price,
+            prediction=next_price,
+            image=image_path
+        )
 
     return render_template("index.html")

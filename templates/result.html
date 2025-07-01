@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
 <h2>Prediction for {{ ticker }}</h2>
-<p>Next day's predicted price: <strong>${{ prediction }}</strong></p>
+<p class="prediction-text">Today’s estimated price: <strong>${{ today }}</strong></p>
+<p class="prediction-text">Next day's predicted price: <strong>${{ prediction }}</strong></p>
 <img src="/{{ image }}" alt="Prediction chart">
 <a href="/">Try another</a>
 {% endblock %}
