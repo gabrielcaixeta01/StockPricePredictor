@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Stock Price Predictor</h2>
+
+<!-- Error message block -->
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<!-- Form for ticker input -->
+<form method="post">
+  <input name="ticker" placeholder="Enter ticker (e.g. AAPL)" required>
+  <button type="submit">Predict</button>
+</form>
+{% endblock %}

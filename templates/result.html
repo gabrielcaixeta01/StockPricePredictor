@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Prediction for {{ ticker.upper() }}</h2>
+<p>Next day's predicted price: <strong>${{ prediction }}</strong></p>
+<img src="{{ image }}" alt="Prediction plot">
+<a href="/">Try another</a>
+{% endblock %}
