@@ -1,103 +1,48 @@
 {% extends "layout.html" %}
 {% block body %}
-<section class="result-section">
-  <h1>{{ ticker }} Stock Analysis</h1>
+<div class="max-w-5xl mx-auto px-6 py-12 text-gray-100 bg-gray-900 rounded-xl shadow-md">
+  <h1 class="text-3xl font-semibold mb-8">{{ ticker }} Stock Analysis</h1>
 
-  <section class="overview">
-    <h2>📊 Overview</h2>
-    <p><strong>Today's estimated price:</strong> ${{ today_price }}</p>
-    <p><strong>Next day's predicted price:</strong> ${{ next_price }}</p>
-    <p><strong>Sentiment-based predicted price:</strong> ${{ news_prediction }}</p>
+  <section class="mb-10">
+    <h2 class="text-xl font-bold mb-2">📊 Overview</h2>
+    <p class="mb-1">Today's estimated price: <span class="font-semibold">${{ today_price }}</span></p>
+    <p class="mb-1">Next day's predicted price: <span class="font-semibold">${{ next_price }}</span></p>
+    <p>Sentiment-based predicted price: <span class="font-semibold">${{ news_prediction }}</span></p>
   </section>
 
-  <section class="recommendation">
-    <h2>🧠 Should You Invest?</h2>
-    <p><strong>{{ recommendation }}</strong></p>
+  <section class="mb-10">
+    <h2 class="text-xl font-bold mb-2">🧠 Should You Invest?</h2>
+    <p class="text-green-400 font-medium">{{ recommendation }}</p>
   </section>
 
-  <section id="news" class="news-section">
-    <h2>📰 Latest News on {{ ticker }}</h2>
-    {% for article in news_articles %}
-      <div class="news-item">
-        <a href="{{ article.url }}" target="_blank"><strong>{{ article.title }}</strong></a>
-        <p>{{ article.summary }}</p>
-      </div>
-    {% endfor %}
-  </section>
-
-  <section id="news-model" class="chart-section">
-    <h2>📈 Prediction Based on News Sentiment</h2>
-    <div class="chart-container">
-      <iframe src="/{{ news_image }}" width="100%" height="500" style="border:none;"></iframe>
+  <section class="mb-10">
+    <h2 class="text-xl font-bold mb-4">📰 Latest News on {{ ticker }}</h2>
+    <div class="space-y-6">
+      {% for article in news_articles %}
+        <div class="border-b border-gray-700 pb-4">
+          <a href="{{ article.url }}" target="_blank" class="text-blue-400 hover:underline text-lg font-semibold">{{ article.title }}</a>
+          <p class="text-sm text-gray-400 mt-1">{{ article.summary }}</p>
+        </div>
+      {% endfor %}
     </div>
   </section>
 
-  <section id="price-model" class="chart-section">
-    <h2>📈 Prediction Based on Historical Prices</h2>
-    <div class="chart-container">
-      <img src="/{{ image_price }}" alt="Price Prediction Chart">
+  <section class="mb-10">
+    <h2 class="text-xl font-bold mb-2">📈 News Sentiment Prediction</h2>
+    <div class="mt-4">
+      <iframe src="/{{ news_image }}" class="w-full h-[500px] border-none rounded-md"></iframe>
     </div>
   </section>
 
-  <div class="back-section">
-    <a href="/" class="back-link">🔁 Try another prediction</a>
+  <section class="mb-10">
+    <h2 class="text-xl font-bold mb-2">📈 Historical Price Prediction</h2>
+    <div class="mt-4 text-center">
+      <img src="/{{ image_price }}" alt="Price Prediction Chart" class="inline-block rounded-md" />
+    </div>
+  </section>
+
+  <div class="text-center mt-12">
+    <a href="/" class="text-blue-400 hover:underline">🔁 Try another prediction</a>
   </div>
-</section>
-{% endblock %}
-
-{% block styles %}
-<style>
-  .result-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 30px;
-    font-family: 'Segoe UI', sans-serif;
-    color: #e0e1dd;
-  }
-
-  h1, h2 {
-    margin-top: 30px;
-    color: #fff;
-    font-weight: 400;
-  }
-
-  .overview, .recommendation, .news-section, .chart-section {
-    margin-bottom: 40px;
-    background-color: #1b1d22;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-
-  .news-item {
-    margin-bottom: 20px;
-  }
-
-  .news-item a {
-    color: #8ecae6;
-    font-size: 1.1rem;
-    text-decoration: none;
-  }
-
-  .news-item p {
-    font-size: 0.95rem;
-    color: #ccc;
-  }
-
-  .chart-container {
-    margin-top: 20px;
-    text-align: center;
-  }
-
-  .back-section {
-    text-align: center;
-    margin-top: 50px;
-  }
-
-  .back-link {
-    font-size: 1rem;
-    color: #8ecae6;
-    text-decoration: none;
-  }
-</style>
+</div>
 {% endblock %}

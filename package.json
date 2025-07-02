@@ -1,0 +1,25 @@
+{
+  "name": "stock-predictor",
+  "version": "1.0.0",
+  "description": "This project allows users to input a stock ticker (e.g., `AAPL` for Apple) and receive a prediction for the next day's closing price, visualized alongside recent historical data.  This project was developed as a final submission for Harvard’s **CS50x** course and serves as a showcase of my skills as a full-stack developer with a growing interest in Machine Learning and Financial Technology (FinTech).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielcaixeta01/StockPricePredictor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrielcaixeta01/StockPricePredictor/issues"
+  },
+  "homepage": "https://github.com/gabrielcaixeta01/StockPricePredictor#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
+  }
+}

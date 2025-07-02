@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stock Predictor</title>
-  <link rel="stylesheet" href="/static/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
-<body>
-  <header>
-    <h1>Stock Predictor</h1>
+<body class="bg-black text-gray-100 font-[Inter] flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-gray-900 shadow-md p-6 text-center">
+    <h1 class="text-2xl font-semibold text-white">Stock Predictor</h1>
   </header>
-  <main>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
     {% block body %}{% endblock %}
   </main>
-  <footer>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center text-sm text-gray-500 p-4">
     <p>&copy; 2025 Stock Predictor</p>
   </footer>
+
 </body>
 </html>
