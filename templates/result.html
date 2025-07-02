@@ -1,8 +1,56 @@
 {% extends "layout.html" %}
 {% block body %}
-<h2>Prediction for {{ ticker }}</h2>
-<p class="prediction-text">Today’s estimated price: <strong>${{ today }}</strong></p>
-<p class="prediction-text">Next day's predicted price: <strong>${{ prediction }}</strong></p>
-<img src="/{{ image }}" alt="Prediction chart">
-<a href="/">Try another</a>
+  <section class="result-section">
+    <h2>{{ ticker }} Prediction</h2>
+
+    <div class="button-group">
+      <a href="#price" class="btn btn-primary">📈 Price Model</a>
+      <a href="#news" class="btn btn-secondary">📰 News Model</a>
+    </div>
+
+    <div id="price" class="prediction-block">
+      <p class="prediction-text">Today's estimated price: <strong>${{ today_price }}</strong></p>
+      <p class="prediction-text">Next day's predicted price: <strong>${{ next_price }}</strong></p>
+      <div class="chart-container">
+        <img src="/{{ image_price }}" alt="Prediction chart">
+      </div>
+    </div>
+
+    <div id="news" class="prediction-block">
+      <p class="prediction-text">Sentiment-based predicted price: <strong>${{ news_prediction }}</strong></p>
+      <div class="chart-container">
+        <iframe src="/{{ news_image }}" width="100%" height="500" style="border:none;"></iframe>
+      </div>
+    </div>
+
+    <a href="/" class="back-link">Try another prediction</a>
+  </section>
+{% endblock %}
+
+{% block styles %}
+  <style>
+    .prediction-block {
+      margin-bottom: 40px;
+    }
+    .prediction-text {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .button-group {
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin-right: 10px;
+      text-decoration: none;
+      color: white;
+      border-radius: 5px;
+    }
+    .btn-primary {
+      background-color: #415a77;
+    }
+    .btn-secondary {
+      background-color: #8ecae6;
+    }
+  </style>
 {% endblock %}

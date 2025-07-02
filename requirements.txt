@@ -1,5 +1,8 @@
 flask
-yfinance
-pandas
-scikit-learn
 matplotlib
+pandas
+yfinance
+scikit-learn
+textblob
+requests
+python-dotenv
