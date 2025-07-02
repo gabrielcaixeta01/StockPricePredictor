@@ -2,7 +2,19 @@
 {% block body %}
 <h2>Stock Price Predictor</h2>
 <form method="post">
-  <input name="ticker" placeholder="Enter ticker (e.g. AAPL)" required>
+  <input list="tickers" name="ticker" placeholder="Enter ticker (e.g. AAPL)" required>
+  <datalist id="tickers">
+    <option value="AAPL">
+    <option value="MSFT">
+    <option value="GOOGL">
+    <option value="AMZN">
+    <option value="TSLA">
+    <option value="META">
+    <option value="NFLX">
+    <option value="NVDA">
+    <option value="BRK-B">
+    <option value="JPM">
+  </datalist>
   <button type="submit">Predict</button>
 </form>
 {% if error %}
