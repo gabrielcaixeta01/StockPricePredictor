@@ -1,56 +1,103 @@
 {% extends "layout.html" %}
 {% block body %}
-  <section class="result-section">
-    <h2>{{ ticker }} Prediction</h2>
+<section class="result-section">
+  <h1>{{ ticker }} Stock Analysis</h1>
 
-    <div class="button-group">
-      <a href="#price" class="btn btn-primary">📈 Price Model</a>
-      <a href="#news" class="btn btn-secondary">📰 News Model</a>
-    </div>
-
-    <div id="price" class="prediction-block">
-      <p class="prediction-text">Today's estimated price: <strong>${{ today_price }}</strong></p>
-      <p class="prediction-text">Next day's predicted price: <strong>${{ next_price }}</strong></p>
-      <div class="chart-container">
-        <img src="/{{ image_price }}" alt="Prediction chart">
-      </div>
-    </div>
-
-    <div id="news" class="prediction-block">
-      <p class="prediction-text">Sentiment-based predicted price: <strong>${{ news_prediction }}</strong></p>
-      <div class="chart-container">
-        <iframe src="/{{ news_image }}" width="100%" height="500" style="border:none;"></iframe>
-      </div>
-    </div>
-
-    <a href="/" class="back-link">Try another prediction</a>
+  <section class="overview">
+    <h2>📊 Overview</h2>
+    <p><strong>Today's estimated price:</strong> ${{ today_price }}</p>
+    <p><strong>Next day's predicted price:</strong> ${{ next_price }}</p>
+    <p><strong>Sentiment-based predicted price:</strong> ${{ news_prediction }}</p>
   </section>
+
+  <section class="recommendation">
+    <h2>🧠 Should You Invest?</h2>
+    <p><strong>{{ recommendation }}</strong></p>
+  </section>
+
+  <section id="news" class="news-section">
+    <h2>📰 Latest News on {{ ticker }}</h2>
+    {% for article in news_articles %}
+      <div class="news-item">
+        <a href="{{ article.url }}" target="_blank"><strong>{{ article.title }}</strong></a>
+        <p>{{ article.summary }}</p>
+      </div>
+    {% endfor %}
+  </section>
+
+  <section id="news-model" class="chart-section">
+    <h2>📈 Prediction Based on News Sentiment</h2>
+    <div class="chart-container">
+      <iframe src="/{{ news_image }}" width="100%" height="500" style="border:none;"></iframe>
+    </div>
+  </section>
+
+  <section id="price-model" class="chart-section">
+    <h2>📈 Prediction Based on Historical Prices</h2>
+    <div class="chart-container">
+      <img src="/{{ image_price }}" alt="Price Prediction Chart">
+    </div>
+  </section>
+
+  <div class="back-section">
+    <a href="/" class="back-link">🔁 Try another prediction</a>
+  </div>
+</section>
 {% endblock %}
 
 {% block styles %}
-  <style>
-    .prediction-block {
-      margin-bottom: 40px;
-    }
-    .prediction-text {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-    .button-group {
-      margin-bottom: 20px;
-    }
-    .btn {
-      padding: 10px 20px;
-      margin-right: 10px;
-      text-decoration: none;
-      color: white;
-      border-radius: 5px;
-    }
-    .btn-primary {
-      background-color: #415a77;
-    }
-    .btn-secondary {
-      background-color: #8ecae6;
-    }
-  </style>
+<style>
+  .result-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e0e1dd;
+  }
+
+  h1, h2 {
+    margin-top: 30px;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .overview, .recommendation, .news-section, .chart-section {
+    margin-bottom: 40px;
+    background-color: #1b1d22;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .news-item {
+    margin-bottom: 20px;
+  }
+
+  .news-item a {
+    color: #8ecae6;
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+
+  .news-item p {
+    font-size: 0.95rem;
+    color: #ccc;
+  }
+
+  .chart-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .back-section {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .back-link {
+    font-size: 1rem;
+    color: #8ecae6;
+    text-decoration: none;
+  }
+</style>
 {% endblock %}
